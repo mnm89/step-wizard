@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StepsWizard Component
 
-## Getting Started
+## Overview
 
-First, run the development server:
+The `StepsWizard` component is a flexible and customizable stepper component designed to guide users through a multi-step process, such as onboarding, surveys, or forms. It simplifies the implementation of complex workflows by managing steps and transitions seamlessly.
+
+## Features
+
+- Dynamically configurable steps.
+- Customizable components for each step.
+- Callback support for finishing the process.
+- Easy integration into React applications.
+
+---
+
+## Installation
+
+Using shadcn CLI:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx shadcn add https://raw.githubusercontent.com/mnm89/step-wizard/refs/heads/main/setup.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Here is a basic example of how to use the `StepsWizard` component in your React application:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```tsx
+import React from "react";
+import StepsWizard from "stepswizard";
 
-## Learn More
+const App = () => {
+  return (
+    <StepsWizard
+      steps={[
+        {
+          name: "Welcome",
+          key: "welcome",
+          component: () => (
+            <div>
+              <h2>Welcome to Our Platform</h2>
+              <p>We're excited to have you onboard! Click "Next" to get started.</p>
+            </div>
+          ),
+        },
+        {
+          name: "Personal Information",
+          key: "personal-info",
+          component: () => (
+            <div>
+              <h2>Tell Us About Yourself</h2>
+              <label>
+                First Name: <input type="text" placeholder="John" />
+              </label>
+              <br />
+              <label>
+                Last Name: <input type="text" placeholder="Doe" />
+              </label>
+            </div>
+          ),
+        },
+        {
+          name: "Preferences",
+          key: "preferences",
+          component: () => (
+            <div>
+              <h2>Set Your Preferences</h2>
+              <label>
+                <input type="checkbox" /> Receive Email Notifications
+              </label>
+              <br />
+              <label>
+                <input type="checkbox" /> Enable Dark Mode
+              </label>
+            </div>
+          ),
+        },
+        {
+          name: "Review & Submit",
+          key: "review-submit",
+          component: () => (
+            <div>
+              <h2>Review Your Information</h2>
+              <p>Please double-check the information you provided before submitting.</p>
+              <button>Submit</button>
+            </div>
+          ),
+        },
+      ]}
+      onFinish={() => {
+        alert("Thank you for completing the setup!");
+      }}
+    />
+  );
+};
 
-To learn more about Next.js, take a look at the following resources:
+export default App;
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Props
 
-## Deploy on Vercel
+### `steps` (required)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+An array of steps to configure the wizard. Each step is an object with the following properties:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Property   | Type     | Description                                                  |
+|------------|----------|--------------------------------------------------------------|
+| `name`     | `string` | The display name of the step.                                |
+| `key`      | `string` | A unique identifier for the step.                           |
+| `component`| `() => JSX.Element` | A React component that renders the content for this step. |
+
+### `onFinish` (optional)
+
+A callback function executed when the user completes all the steps.
+
+| Property  | Type       | Description                          |
+|-----------|------------|--------------------------------------|
+| `onFinish`| `() => void` | A function to call when the wizard finishes. |
+
+---
+
+## Example Scenarios
+
+1. **Onboarding Flow**: Use `StepsWizard` to guide new users through a multi-step onboarding process.
+2. **Survey**: Create an interactive survey or questionnaire with multiple steps.
+3. **Multi-Step Form**: Break down complex forms into manageable steps to improve user experience.
+
+---
+
+## Customization
+
+Each step can include any custom React component. You can style and configure each step to suit your specific needs. For example, you can include validation logic, animations, or conditionally rendered elements in each step's `component`.
+
+---
+
+## Contribution
+
+If you'd like to contribute to the `StepsWizard` component, feel free to fork the repository and open a pull request with your enhancements or bug fixes.
+
+---
+
+## License
+
+`StepsWizard` is licensed under the MIT License. Feel free to use it in personal or commercial projects.
