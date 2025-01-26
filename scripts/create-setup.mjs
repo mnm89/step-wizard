@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const SHADCN_COMPONENTS = ["card"];
+const SHADCN_COMPONENTS = ["card", "button"];
 
 const EXTERNAL_DEPENDENCIES = [];
 const main = () => {

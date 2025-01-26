@@ -2,10 +2,8 @@
 
 import React, { JSX, useCallback, useEffect } from "react";
 import { useStepWizard } from "./provider";
-import { cn } from "@/lib/utils";
 
 export type WizardProps = {
-  className?: string;
   initialStep?: number;
   isHashEnabled?: boolean;
   isLazyMount?: boolean;
@@ -71,7 +69,5 @@ export default function Wizard(props: WizardProps) {
     if (props.onStepChange) props.onStepChange(activeStep);
   }, [activeStep, props, updateHash]);
 
-  return (
-    <div className={cn("w-[640px]", props.className)}>{childrenWithProps}</div>
-  );
+  return <div>{childrenWithProps}</div>;
 }

@@ -6,7 +6,7 @@ interface Props {
     key: string;
     component: ComponentType;
   }[];
-  onFinish: () => void;
+  onFinish?: () => void;
   transitions?: {
     enterRight?: string;
     enterLeft?: string;
@@ -55,7 +55,7 @@ export function StepWizardProvider(
         if (process.env.NODE_ENV !== "production") {
           console.debug(`${next + 1} is an invalid step`);
         }
-        if (next > 0) {
+        if (next > 0 && props.onFinish) {
           props.onFinish();
         }
         return;
