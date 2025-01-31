@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/theme-provider";
-import ThemeToggle from "@/components/theme-toggle";
-import Link from "next/link";
-import { Dock, DockIcon } from "@/components/ui/dock";
-import { Code, Home } from "lucide-react";
+import { AppDock } from "@/components/app-dock";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,23 +30,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="relative">
-            <Dock className="ml-auto mr-10">
-              <DockIcon>
-                <Link href="/">
-                  <Home className="size-6" />
-                </Link>
-              </DockIcon>
-              <DockIcon>
-                <Link href="/examples">
-                  <Code />
-                </Link>
-              </DockIcon>
-              <DockIcon>
-                <ThemeToggle />
-              </DockIcon>
-            </Dock>
-          </header>
+          <AppDock />
           {children}
         </ThemeProvider>
       </body>

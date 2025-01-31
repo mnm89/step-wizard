@@ -4,7 +4,11 @@ import React, { useCallback, useEffect } from "react";
 import { useStepWizard } from "./provider";
 import { WizardProps } from "../types";
 
-export default function Wizard(props: WizardProps) {
+export default function Wizard(
+  props: WizardProps & {
+    children: JSX.Element | JSX.Element[] | React.ReactElement;
+  }
+) {
   const { activeStep, classes, goToNamedStep, hashKeys } = useStepWizard();
 
   const childrenWithProps = React.Children.map(

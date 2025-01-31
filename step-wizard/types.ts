@@ -12,5 +12,4 @@ export interface WizardProps {
   isLazyMount?: boolean;
   onStepChange?: (currentStep: number) => void;
   className?: string;
-  children: JSX.Element | JSX.Element[] | React.ReactElement;
 }
