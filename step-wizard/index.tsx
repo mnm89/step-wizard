@@ -11,12 +11,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Step from "./step";
-import Stepper from "./stepper";
-import Wizard from "./wizard";
-import "./animate.css";
-import { StepWizardProvider, useStepWizard } from "./provider";
+import Step from "./components/step";
+import Stepper from "./components/stepper";
+import Wizard from "./components/wizard";
+import "./styles/animate.css";
+import { StepWizardProvider, useStepWizard } from "./components/provider";
 import { cn } from "@/lib/utils";
+import { NavigationProps, StepperProps, WizardProps } from "./types";
 
 function NextButton() {
   const { activeStep, nextStep, steps, onFinish } = useStepWizard();
@@ -48,8 +49,19 @@ function PreviousButton() {
   );
 }
 
-function StepperNavigation() {
+function ButtonsNavigation(props: NavigationProps) {
+  if (props.disabled) return null;
+  return (
+    <CardDescription className="flex justify-center gap-8 py-4">
+      <PreviousButton />
+      <NextButton />
+    </CardDescription>
+  );
+}
+
+function StepperNavigation(props: StepperProps) {
   const { steps, activeStep, goToNamedStep } = useStepWizard();
+  if (props.disabled) return null;
   return (
     <Stepper activeStep={activeStep}>
       {steps.map((s, i) => (
@@ -72,11 +84,11 @@ interface Props {
   }[];
   onFinish?: () => void;
   className?: string;
-  noStepperHeader?: boolean;
-  noNavigationButtons?: boolean;
-  enableHashUrl?: boolean;
+  stepperProps?: StepperProps;
+  navigationProps?: NavigationProps;
+  wizardProps?: WizardProps;
 }
-export default function StepWizard(props: Props) {
+export function StepWizard(props: Props) {
   const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
@@ -93,19 +105,14 @@ export default function StepWizard(props: Props) {
   return (
     <StepWizardProvider steps={props.steps} onFinish={props.onFinish}>
       <div className={cn("w-[640px] flex flex-col gap-4", props.className)}>
-        {!props.noStepperHeader && <StepperNavigation />}
-        <Wizard isHashEnabled={props.enableHashUrl}>
+        <StepperNavigation {...props.stepperProps} />
+        <Wizard {...props.wizardProps}>
           {props.steps.map(({ key, component, name }) => {
             return (
               <Card key={key} className="my-5">
                 <CardHeader>
                   <CardTitle>{name}</CardTitle>
-                  {!props.noNavigationButtons && (
-                    <CardDescription className="flex justify-center gap-8 py-4">
-                      <PreviousButton />
-                      <NextButton />
-                    </CardDescription>
-                  )}
+                  <ButtonsNavigation {...props.navigationProps} />
                 </CardHeader>
                 <CardContent>{React.createElement(component)}</CardContent>
               </Card>
@@ -116,3 +123,4 @@ export default function StepWizard(props: Props) {
     </StepWizardProvider>
   );
 }
+export default StepWizard;

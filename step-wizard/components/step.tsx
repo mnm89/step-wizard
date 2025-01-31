@@ -1,7 +1,7 @@
 import React, { type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
-import { objectToString } from "./utils";
+import { objectToString } from "../utils";
 
 export interface StepProps extends React.ComponentProps<"div"> {
   className?: string;

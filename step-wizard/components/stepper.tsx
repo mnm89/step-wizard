@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 import { styles as stepStyles } from "./step";
-import { objectToString } from "./utils";
+import { objectToString } from "../utils";
 
 export interface StepperProps extends React.ComponentProps<"div"> {
   activeStep?: number;

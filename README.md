@@ -1,8 +1,8 @@
-# StepsWizard Component
+# StepWizard Component
 
 ## Overview
 
-The `StepsWizard` component is a flexible and customizable stepper component designed to guide users through a multi-step process, such as onboarding, surveys, or forms. It simplifies the implementation of complex workflows by managing steps and transitions seamlessly.
+The `StepWizard` component is a flexible and customizable stepper component designed to guide users through a multi-step process, such as onboarding, surveys, or forms. It simplifies the implementation of complex workflows by managing steps and transitions seamlessly.
 
 ## Features
 
@@ -23,15 +23,15 @@ npx shadcn add https://raw.githubusercontent.com/mnm89/step-wizard/refs/heads/ma
 
 ## Usage
 
-Here is a basic example of how to use the `StepsWizard` component in your React application:
+Here is a basic example of how to use the `StepWizard` component in your React application:
 
 ```tsx
 import React from "react";
-import StepsWizard from "stepswizard";
+import StepWizard from "step-wizard";
 
 const App = () => {
   return (
-    <StepsWizard
+    <StepWizard
       steps={[
         {
           name: "Welcome",
@@ -123,7 +123,7 @@ A callback function executed when the user completes all the steps.
 
 ## Example Scenarios
 
-1. **Onboarding Flow**: Use `StepsWizard` to guide new users through a multi-step onboarding process.
+1. **Onboarding Flow**: Use `StepWizard` to guide new users through a multi-step onboarding process.
 2. **Survey**: Create an interactive survey or questionnaire with multiple steps.
 3. **Multi-Step Form**: Break down complex forms into manageable steps to improve user experience.
 
@@ -137,10 +137,10 @@ Each step can include any custom React component. You can style and configure ea
 
 ## Contribution
 
-If you'd like to contribute to the `StepsWizard` component, feel free to fork the repository and open a pull request with your enhancements or bug fixes.
+If you'd like to contribute to the `StepWizard` component, feel free to fork the repository and open a pull request with your enhancements or bug fixes.
 
 ---
 
 ## License
 
-`StepsWizard` is licensed under the MIT License. Feel free to use it in personal or commercial projects.
+`StepWizard` is licensed under the MIT License. Feel free to use it in personal or commercial projects.

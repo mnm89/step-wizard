@@ -4,6 +4,8 @@ import "./globals.css";
 import ThemeProvider from "@/components/theme-provider";
 import ThemeToggle from "@/components/theme-toggle";
 import Link from "next/link";
+import { Dock, DockIcon } from "@/components/ui/dock";
+import { Code, Home } from "lucide-react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,30 +33,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="sticky top-0 z-40 w-full shadow-sm">
-            <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
-              <div className="flex items-center gap-6 md:gap-10">
-                <nav className="hidden gap-6 md:flex">
-                  <Link
-                    href="/"
-                    className="truncate rounded-full px-4 py-2 transition"
-                  >
-                    Home
-                  </Link>
-                  <Link
-                    href="/examples"
-                    className="truncate rounded-full px-4 py-2 transition"
-                  >
-                    Examples
-                  </Link>
-                </nav>
-              </div>
-              <div className="flex flex-1 items-center justify-end space-x-4">
-                <nav className="flex items-center gap-1">
-                  <ThemeToggle />
-                </nav>
-              </div>
-            </div>
+          <header className="relative">
+            <Dock className="ml-auto mr-10">
+              <DockIcon>
+                <Link href="/">
+                  <Home className="size-6" />
+                </Link>
+              </DockIcon>
+              <DockIcon>
+                <Link href="/examples">
+                  <Code />
+                </Link>
+              </DockIcon>
+              <DockIcon>
+                <ThemeToggle />
+              </DockIcon>
+            </Dock>
           </header>
           {children}
         </ThemeProvider>

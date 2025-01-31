@@ -1,15 +1,8 @@
 "use client";
 
-import React, { JSX, useCallback, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useStepWizard } from "./provider";
-
-export type WizardProps = {
-  initialStep?: number;
-  isHashEnabled?: boolean;
-  isLazyMount?: boolean;
-  onStepChange?: (currentStep: number) => void;
-  children: JSX.Element | JSX.Element[] | React.ReactElement;
-};
+import { WizardProps } from "../types";
 
 export default function Wizard(props: WizardProps) {
   const { activeStep, classes, goToNamedStep, hashKeys } = useStepWizard();
@@ -69,5 +62,5 @@ export default function Wizard(props: WizardProps) {
     if (props.onStepChange) props.onStepChange(activeStep);
   }, [activeStep, props, updateHash]);
 
-  return <div>{childrenWithProps}</div>;
+  return <div className={props.className}>{childrenWithProps}</div>;
 }

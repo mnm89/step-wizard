@@ -14,6 +14,7 @@ const main = () => {
     })
     .filter((file) => file.isFile())
     .map((file) => {
+      console.log(file.name);
       return {
         path: `./step-wizard${file.parentPath.replace(stepWizardDir, "")}/${
           file.name
