@@ -27,7 +27,7 @@ export default function NavigationButtonsExample() {
   return (
     <section className="flex flex-col gap-4 items-center">
       <h2 className="text-xl font-semibold my-5">Navigation Buttons</h2>
-      <StepWizard steps={step} noNavigationButtons />
+      <StepWizard steps={step} navigationProps={{ disabled: true }} />
     </section>
   );
 }

@@ -26,7 +26,7 @@ export default function NavigationStepperExample() {
   return (
     <section className="flex flex-col gap-4 items-center">
       <h2 className="text-xl font-semibold my-5">Navigation Stepper</h2>
-      <StepWizard steps={step} noNavigationStepper />
+      <StepWizard steps={step} stepperProps={{ disabled: true }} />
     </section>
   );
 }

@@ -27,7 +27,7 @@ export default function LazyMountExample() {
   return (
     <section className="flex flex-col gap-4 items-center">
       <h2 className="text-xl font-semibold my-5">Lazy mount</h2>
-      <StepWizard steps={step} lazyMount />
+      <StepWizard steps={step} wizardProps={{ isLazyMount: true }} />
     </section>
   );
 }
